@@ -118,10 +118,34 @@ class _InventoryScreenState extends State<InventoryScreen> {
                         itemCount: items.length,
                         itemBuilder: (context, i) {
                           final item = items[i];
+                          final isLow = item.quantity <= 5;
                           return ListTile(
-                            title: Text(item.name),
+                            title: Row(
+                              children: [
+                                Text(item.name),
+                                if (isLow) ...[
+                                  const SizedBox(width: 8),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6, vertical: 2),
+                                    decoration: BoxDecoration(
+                                      color: Colors.red.shade100,
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Text(
+                                      'Low Stock',
+                                      style: TextStyle(
+                                          fontSize: 11,
+                                          color: Colors.red.shade800,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              ],
+                            ),
                             subtitle: Text(
                                 'Qty: ${item.quantity}  |  \$${item.price.toStringAsFixed(2)}'),
+                            tileColor: isLow ? Colors.red.shade50 : null,
                             trailing: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [

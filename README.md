@@ -16,6 +16,9 @@ Displays the total value of all inventory items (price × quantity) in a banner 
 ### 2. Search / Filter
 A search bar lets users filter items by name instantly. Useful for large inventories — results update as you type without any additional Firestore queries.
 
+### 3. Low Stock Warning
+Items with a quantity of 5 or fewer are highlighted with a red background and a "Low Stock" badge next to the item name. This gives users an immediate visual cue to restock before running out.
+
 ## Architecture
 
 - `lib/models/item.dart` — Item data model with `toMap()` and `fromMap()`
